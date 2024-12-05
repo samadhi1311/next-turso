@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { createInsertSchema } from 'drizzle-zod';
-
 import { customers } from '../db/schema';
 
 const CustomerSchema = createInsertSchema(customers, {
@@ -12,4 +11,12 @@ const CustomerSchema = createInsertSchema(customers, {
 		.max(255, { message: 'Username must be at most 255 characters' }),
 }).omit({ id: true, createdAt: true });
 
+type CustomerType = {
+	id: number;
+	username: string;
+	email: string;
+	createdAt: string;
+};
+
 export { CustomerSchema };
+export type { CustomerType };
